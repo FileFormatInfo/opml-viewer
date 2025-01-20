@@ -13,6 +13,7 @@ type OpmlOutline = {
     title: string;
     xmlUrl: string;
     htmlUrl: string;
+    url: string;
     outline: OpmlOutline[] | OpmlOutline;
 }
 

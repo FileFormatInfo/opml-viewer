@@ -117,8 +117,8 @@ function processNode(retVal: OpmlData, parent: TreeItem, data: OpmlOutline[]) {
 
         const newItem: TreeItem = {
             id: `ti-${retVal.count}`,
-            label: item.title,
-            htmlUrl: purifyUrl(item.htmlUrl),
+            label: item.title || item.text || "",
+            htmlUrl: purifyUrl(item.htmlUrl) || purifyUrl(item.url),
             xmlUrl: purifyUrl(item.xmlUrl),
             children: [],
         };
