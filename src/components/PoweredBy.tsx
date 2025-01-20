@@ -23,7 +23,7 @@ function PoweredBy() {
             width: 'fit-content',
             fontSize: '0.8rem',
         }}>
-            <NextLink href="https://view.sitemap.style/"
+            <NextLink href="https://www.xml.style/"
                 style={{ textDecoration: 'none', color: grey[900] }}
             >{t("poweredby")}</NextLink>
         </Container>

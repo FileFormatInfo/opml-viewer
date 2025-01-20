@@ -1,5 +1,5 @@
 #
-# robots.txt for the sitemap.xml viewer
+# robots.txt for the opml.xml viewer
 #
 
 User-agent: *

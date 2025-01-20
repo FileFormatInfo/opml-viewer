@@ -1,31 +1,27 @@
-type SitemapEntry = {
-    url: string; // full url
-    directory: string[]; // where it will be displayed in the tree
-    filename: string; // filename, parsed from url
-    name: string; // displayed name, parsed from url (or sitemap extension)
-    lastmod: string;
-    priority: string;
-};
 
-type SitemapData = {
+type OpmlData = {
     success: boolean;
+    count: number;
     errorCount: number;
     messages: string[];
-    sitemaps: string[];
-    entries: SitemapEntry[];
+    title: string|undefined;
+    root: TreeItem;
 };
+
+type OpmlOutline = {
+    text: string;
+    title: string;
+    xmlUrl: string;
+    htmlUrl: string;
+    outline: OpmlOutline[] | OpmlOutline;
+}
 
 type TreeItem = {
-    id: string; // url if hasEntry, otherwise localpath
+    id: string;
     label: string;
-    filename: string;
-    hasEntry: boolean; // if false, it's a directory that does not have its own entry and thus should not be hyperlinked
+    htmlUrl?: string;
+    xmlUrl?: string;
     children: TreeItem[];
-    //childMap: { [key: string]: TreeItem };
 };
 
-export type {
-    SitemapData,
-    SitemapEntry,
-    TreeItem,
-}
+export type { OpmlData, OpmlOutline, TreeItem };

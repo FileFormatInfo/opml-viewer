@@ -6,17 +6,17 @@
   "HomePage": {
     "cancel_button": "Abbrechen",
     "demo_button": "Demo",
-    "return_help": "Standardmäßig an der Wurzel der URL sitemap.xml",
+    "return_help": "Standardmäßig an der Wurzel der URL opml.xml",
     "return_label": "Rückkehr-URL (optional)",
     "show_exit_label": "Ausgangswerkzeug anzeigen",
     "show_language_label": "Sprachauswahl anzeigen",
     "show_log_label": "Protokollierungswerkzeug anzeigen",
     "show_mode_label": "Hell/Dunkel-Werkzeug anzeigen",
     "sort_label": "Sortieren",
-    "tip": "<Icon></Icon>Siehe <Link>Sitemap.Style</Link> für die Integration in Ihre Website.",
-    "title": "Sitemap-Viewer",
+    "tip": "<Icon></Icon>Siehe <Link>Anweisungen</Link> für die Integration in Ihre Website.",
+    "title": "Gliederung",
     "transform_label": "Seitennamen-Transformation",
-    "url_label": "URL Ihrer sitemap.xml",
+    "url_label": "URL Ihrer opml.xml",
     "url_required": "URL ist erforderlich",
     "view_button": "Ansehen"
   },
@@ -52,8 +52,9 @@
     "titlecase": "Titel-Schreibweise, Interpunktion zu Leerzeichen"
   },
   "ViewPage": {
+    "feed_icon_alt": "RSS/Atom-Feed-Symbol",
     "home": "Startseite",
-    "poweredby": "Angetrieben durch Sitemap.Style",
-    "title": "Sitemap"
+    "poweredby": "Angetrieben durch opml.xml.style",
+    "title": "Gliederung"
   }
 }

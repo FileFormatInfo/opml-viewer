@@ -8,7 +8,7 @@ docker build \
 	--build-arg COMMIT=$(git rev-parse --short HEAD) \
 	--build-arg LASTMOD=$(date -u +%Y-%m-%dT%H:%M:%SZ) \
 	--progress=plain \
-	--tag view-sitemap-style \
+	--tag opml-xml-style \
 	.
 
 #	--no-cache \
@@ -21,4 +21,4 @@ docker run \
 	--publish 4000:4000 \
 	--rm \
 	--tty \
-    view-sitemap-style
+    opml-xml-style

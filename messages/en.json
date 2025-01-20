@@ -6,17 +6,17 @@
   "HomePage": {
     "cancel_button": "Cancel",
     "demo_button": "Demo",
-    "return_help": "Defaults to root of sitemap.xml URL",
+    "return_help": "Defaults to root of opml.xml URL",
     "return_label": "Return URL (optional)",
     "show_exit_label": "Show Exit Tool",
     "show_language_label": "Show Language Picker",
     "show_log_label": "Show Logging Tool",
     "show_mode_label": "Show Light/Dark Tool",
     "sort_label": "Sort",
-    "tip": "<Icon></Icon>See <Link>Sitemap.Style</Link> for how to integrate this into your website.",
-    "title": "Sitemap Viewer",
+    "tip": "<Icon></Icon>See the <Link>instructions</Link> for how to integrate this into your website.",
+    "title": "Outline Viewer",
     "transform_label": "Page name transform",
-    "url_label": "URL of your sitemap.xml",
+    "url_label": "URL of your opml.xml",
     "url_required": "URL is required",
     "view_button": "View"
   },
@@ -52,8 +52,9 @@
     "titlecase": "Title cased, punctuation to spaces"
   },
   "ViewPage": {
+    "feed_icon_alt": "RSS/Atom Feed Icon",
     "home": "Home page",
-    "poweredby": "Powered by Sitemap.Style",
-    "title": "Site Map"
+    "poweredby": "Powered by opml.xml.style",
+    "title": "Outline"
   }
 }

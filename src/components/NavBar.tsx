@@ -3,7 +3,7 @@ import NextLink from 'next/link';
 import AppBar from '@mui/material/AppBar';
 import Toolbar from '@mui/material/Toolbar';
 import Typography from '@mui/material/Typography';
-import { MdLogout, MdMap } from 'react-icons/md';
+import { MdLogout, MdOutlineAccountTree } from 'react-icons/md';
 import Stack from '@mui/material/Stack';
 import Container from '@mui/material/Container';
 import DebugButton from './DebugButton';
@@ -27,7 +27,7 @@ export default function NavBar({ debug, exit, language, messages, mode, returnUr
                 <Toolbar disableGutters={true} sx={{ justifyContent: 'space-between', alignItems: 'center' }}>
                     <Stack direction="row" spacing={2} sx={{ alignItems: 'center' }}>
                         <NextLink href={returnUrl} style={{ display: 'flex', alignItems: 'center' }}>
-                            <MdMap size={32} color="white" />
+                            <MdOutlineAccountTree size={32} color="white" />
                         </NextLink>
                         <Typography variant="h6" component="div" >
                             {title}

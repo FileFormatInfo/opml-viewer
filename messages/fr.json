@@ -6,17 +6,17 @@
   "HomePage": {
     "cancel_button": "Annuler",
     "demo_button": "Démo",
-    "return_help": "Par défaut à la racine de l'URL sitemap.xml",
+    "return_help": "Par défaut à la racine de l'URL opml.xml",
     "return_label": "URL de retour (optionnel)",
     "show_exit_label": "Afficher l'outil de sortie",
     "show_language_label": "Afficher le sélecteur de langue",
     "show_log_label": "Afficher l'outil de journalisation",
     "show_mode_label": "Afficher l'outil clair/sombre",
     "sort_label": "Trier",
-    "tip": "<Icon></Icon>Voir <Link>Sitemap.Style</Link> pour intégrer ceci dans votre site Web.",
+    "tip": "<Icon></Icon>Voir les <Link>instructions</Link> pour intégrer ceci dans votre site Web.",
     "title": "Visionneuse de plan du site",
     "transform_label": "Transformation du nom de la page",
-    "url_label": "URL de votre sitemap.xml",
+    "url_label": "URL de votre opml.xml",
     "url_required": "URL est requise",
     "view_button": "Voir"
   },
@@ -52,8 +52,9 @@
     "titlecase": "Majuscule à chaque mot, ponctuation en espaces"
   },
   "ViewPage": {
+    "feed_icon_alt": "Icône de flux RSS/Atom",
     "home": "Page d'accueil",
-    "poweredby": "Propulsé par Sitemap.Style",
+    "poweredby": "Propulsé par opml.xml.style",
     "title": "Plan du site"
   }
 }

@@ -13,7 +13,7 @@ import ConfigForm from '@/components/ConfigForm';
 
 
 export const metadata: Metadata = {
-    description: 'Mobile-friendly web application to view sitemap.xml files',
+    description: 'Mobile-friendly web application to view opml.xml files',
     icons: [{
         url: '/favicon.svg',
         type: 'image/svg+xml',

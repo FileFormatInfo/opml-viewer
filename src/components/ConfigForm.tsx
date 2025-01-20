@@ -21,7 +21,7 @@ export default function ConfigForm() {
     const router = useRouter();
     const { register, handleSubmit, formState: { errors } } = useForm<ConfigInputs>({
         defaultValues: {
-            url: constants.DEFAULT_SITEMAP_URL,
+            url: constants.DEFAULT_URL,
             exit: '',
             sort: DEFAULT_SORT,
             transform: DEFAULT_TRANSFORM,
@@ -48,7 +48,7 @@ export default function ConfigForm() {
                 id="text"
                 label={t("url_label")}
                 sx={{ mt: 2 }}
-                defaultValue={constants.DEFAULT_SITEMAP_URL}
+                defaultValue={constants.DEFAULT_URL}
                 {...register("url", { required: t("url_required") })}
             />
             <TextField
@@ -78,7 +78,7 @@ export default function ConfigForm() {
                 <Button color="success" variant="contained" type="submit">
                     {t("view_button")}
                 </Button>
-                <Button color="success" variant="outlined" component={NextLink} href="https://www.sitemap.style/">
+                <Button color="success" variant="outlined" component={NextLink} href="https://www.xml.style/">
                     {t("cancel_button")}
                 </Button>
                 <Stack direction="row" flex="1" justifyContent="flex-end" spacing={2} sx={{ backgroundColor: 'transparent' }}>

@@ -7,12 +7,12 @@ import SitemapTreeView from '@/components/SitemapTreeView';
 import NavBar from '@/components/NavBar';
 import { constants } from '@/lib/constants';
 import { getFirst } from '@/lib/getFirst';
-import { loadSitemap } from '@/lib/loadSitemap';
-import { SitemapEntry, TreeItem } from '@/lib/types';
+import { OpmlData, TreeItem } from '@/lib/types';
 import { PoweredBy } from '@/components/PoweredBy';
-import { DEFAULT_TRANSFORM, getTransform } from '@/components/TransformSelect';
 import { trackUsage } from '@/lib/usage';
 import { DEFAULT_SORT } from '@/components/SortSelect';
+import { loadOutline } from '@/lib/loadOutline';
+//import { DEFAULT_TRANSFORM } from '@/components/TransformSelect';
 
 export default async function View({
     searchParams,
@@ -26,13 +26,15 @@ export default async function View({
     const showMode = getFirst(urlParams['showmode'], '0') === '1';
     const showExit = getFirst(urlParams['showexit'], '0') === '1';
     const showLanguage = getFirst(urlParams['showlanguage'], '0') === '1';
-    const title = getFirst(urlParams['title'], t('title'));
-    const home = getFirst(urlParams['home'], t('home'));
+    const customTitle = getFirst(urlParams['title'], t('title'));
     let url_str = getFirst(urlParams['url'], constants.DEMO_URL);
-    if (!url_str || url_str === constants.DEFAULT_SITEMAP_URL) {
+    if (!url_str || url_str === constants.DEFAULT_URL) {
         url_str = constants.DEMO_URL;
     }
     const sort = getFirst(urlParams['sort'], DEFAULT_SORT);
+    //LATER: const transform = getFirst(urlParams['transform'], DEFAULT_TRANSFORM);
+    const useRssStyle = getFirst(urlParams['rssstyle'], '1') === '1';
+
     let returnUrl = getFirst(urlParams['return'], '');
     if (returnUrl == '') {
         const defaultUrl = new URL(url_str);
@@ -42,27 +44,20 @@ export default async function View({
 
     trackUsage(url_str);
 
-    const sme = await loadSitemap(url_str);
-    if (sort == "url") {
-        sme.entries.sort((a, b) => { return a.url.localeCompare(b.url); });
-    }
-    const items = listToTree(sme.entries);
+    const sme:OpmlData = await loadOutline(url_str);
+    const items:TreeItem[] = sme.root.children;
 
-    const transformer = getTransform(getFirst(urlParams['transform'], DEFAULT_TRANSFORM));
-    if (transformer) {
-        transform(items, transformer);
+    if (useRssStyle) {
+        transform(items, addRssStyle);
     }
-    // fix name of root page
-    for (const item of items) {
-        if (item.label == '') {
-            item.label = home;
-        }
-    }
-    if (sort == "name") {
+
+    if (sort === 'name') {
         sortTreeName(items);
-    } else if (sort == "dirfirst") {
+    } else if (sort === 'dirfirst') {
         sortTreeDirFirst(items);
     }
+
+    const title = sme.title || customTitle;
     if (!sme.success) {
         showDebug = true;
     }
@@ -83,7 +78,7 @@ export default async function View({
                         width: '100%',
                     }}
                 >
-                    {sme.success || items.length ? <SitemapTreeView items={items} /> : <h1>Failed to load sitemap</h1>}
+                    {sme.success || items.length ? <SitemapTreeView items={items} /> : <h1>Failed to load outline</h1>}
                 </Box>
                 <PoweredBy />
             </Container>
@@ -91,15 +86,6 @@ export default async function View({
         </>
 
     );
-}
-
-function transform(items: TreeItem[], transformer: (s: string) => string) {
-    for (const item of items) {
-        item.label = transformer(item.label);
-        if (item.children.length > 0) {
-            transform(item.children, transformer);
-        }
-    }
 }
 
 function sortTreeName(items: TreeItem[]) {
@@ -135,64 +121,19 @@ function sortTreeDirFirst(items: TreeItem[]) {
     }
 }
 
+function addRssStyle(item: TreeItem) {
+    if (item.xmlUrl) {
+        item.xmlUrl = `https://www.rss.style/example.xml?feedurl=${encodeURIComponent(item.xmlUrl)}`;
+    }
+}
 
-function listToTree(entries: SitemapEntry[]): TreeItem[] {
-
-    const root: TreeItem[] = [];
-
-    for (const entry of entries) {
-
-        const parent = findOrCreateParents(root, entry.directory);
-
-        const item = parent.find((item) => item.filename == entry.filename);
-        if (item) {
-            // this happens when a directory entry is found after a file entry from that directory
-            item.id = entry.url;
-            item.hasEntry = true;
-            item.label = entry.name
-        } else {
-            const new_item: TreeItem = {
-                id: entry.url,
-                filename: entry.filename,
-                label: entry.name,
-                children: [],
-                hasEntry: true,
-            };
-            parent.push(new_item);
+function transform(items: TreeItem[], transformer: (item:TreeItem) => void) {
+    for (const item of items) {
+        transformer(item);
+        if (item.children.length > 0) {
+            transform(item.children, transformer);
         }
     }
-    return root;
 }
 
-function findOrCreateParent(
-    parent: TreeItem[],
-    fullpath: string,
-    directory: string
-): TreeItem[] {
-    let item = parent.find((item) => item.filename == directory);
-    if (item) {
-        return item.children as TreeItem[];
-    }
-    item = {
-        id: `local:${fullpath}`,
-        filename: directory || "indirect should not occur",
-        label: `${directory}`, // (indirect id=${fullpath})`,
-        children: [],
-        hasEntry: false,
-    };
-    parent.push(item);
-    return item.children as TreeItem[];
-}
 
-function findOrCreateParents(parent: TreeItem[], paths: string[]): TreeItem[] {
-    if (paths.length == 0) {
-        return parent;
-    }
-
-    for (let index = 0; index < paths.length; index++) {
-        const fullpath = `/${paths.slice(0, index + 1).join("/")}/`;
-        const directory = paths[index];
-        parent = findOrCreateParent(parent, fullpath, directory);
-    }
-    return parent;
-}

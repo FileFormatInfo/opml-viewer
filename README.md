@@ -1,10 +1,10 @@
-# Sitemap Viewer [<img alt="Sitemap Viewer logo" src="public/favicon.svg" height="90" align="right" />](https://view.sitemap.style/)
+# Outline Viewer [<img alt="Outline Viewer logo" src="public/favicon.svg" height="90" align="right" />](https://opml.xml.style/)
 
 [![NodePing status](https://img.shields.io/nodeping/status/9rpjcz1i-8nzx-442d-8yzk-tm7l5zfhbllw?label=Current%20status)](https://nodeping.com/reports/checks/9rpjcz1i-8nzx-442d-8yzk-tm7l5zfhbllw)
 [![NodePing uptime](https://img.shields.io/nodeping/uptime/9rpjcz1i-8nzx-442d-8yzk-tm7l5zfhbllw?label=30-day%20uptime)](https://nodeping.com/reports/uptime/9rpjcz1i-8nzx-442d-8yzk-tm7l5zfhbllw)
-[![deploy](https://github.com/fileformat/view.sitemap.style/actions/workflows/gcr-deploy.yaml/badge.svg)](https://github.com/fileformat/view.sitemap.style/actions/workflows/gcr-deploy.yaml)
+[![deploy](https://github.com/fileformat/opml.xml.style/actions/workflows/gcr-deploy.yaml/badge.svg)](https://github.com/fileformat/opml.xml.style/actions/workflows/gcr-deploy.yaml)
 
-This is a graphical viewer for `sitemap.xml` files.  Try it at [Sitemap.Style](https://www.sitemap.style/)!
+This is a graphical viewer for `opml.xml` files.  Try it at [opml.xml.style](https://opml.xml.style/)!
 
 ## Running locally
 
@@ -37,6 +37,7 @@ This is a graphical viewer for `sitemap.xml` files.  Try it at [Sitemap.Style](h
 
 ## To Do
 
+- [ ] structured logging
 - [ ] custom xml namespace: open/closed, allopen, style, title
 - [ ] label transforms: do not change if custom label
 - [ ] sort option `homefirst` to be name, but "Home" at top
