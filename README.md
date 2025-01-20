@@ -1,4 +1,4 @@
-# Outline Viewer [<img alt="Outline Viewer logo" src="public/favicon.svg" height="90" align="right" />](https://opml.xml.style/)
+# OPML Outline Viewer [<img alt="Outline Viewer logo" src="public/favicon.svg" height="90" align="right" />](https://opml.xml.style/)
 
 [![NodePing status](https://img.shields.io/nodeping/status/O0XVZ8N8-AB6K-4DZG-80XJ-5P7F7HP3DCMG?label=Current%20status)](https://nodeping.com/reports/checks/O0XVZ8N8-AB6K-4DZG-80XJ-5P7F7HP3DCMG)
 [![NodePing uptime](https://img.shields.io/nodeping/uptime/O0XVZ8N8-AB6K-4DZG-80XJ-5P7F7HP3DCMG?label=30-day%20uptime)](https://nodeping.com/reports/uptime/O0XVZ8N8-AB6K-4DZG-80XJ-5P7F7HP3DCMG)
@@ -37,13 +37,14 @@ This is a graphical viewer for `opml.xml` outlines.  Try it at [opml.xml.style](
 
 ## To Do
 
+- [ ] option to link xmlUrl to analyzer and/or validator
+- [ ] cleanup demo.xml
 - [ ] structured logging
-- [ ] custom xml namespace: open/closed, allopen, style, title
-- [ ] label transforms: do not change if custom label
-- [ ] sort option `homefirst` to be name, but "Home" at top
+- [ ] handle html labels (optionally)
+- [ ] open nodes based on `expansionState`
+- [ ] initial scroll based on `vertScrollState`
 - [ ] "report an issue" in footer of debug dialog (link to GH issues)
 - [ ] test/cleanup error pages
-- [ ] use favicon (or custom icon) in navbar (instead of MdMap)
 - [ ] better 404 page formatting
 - [ ] customize initial light/dark mode (or maybe not?)
 - [ ] customize initial language (or maybe not?)
