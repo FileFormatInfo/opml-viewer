@@ -46,15 +46,15 @@
     "url": "URL"
   },
   "Transform": {
-    "initialcap": "First letter capitalized, punctation to spaces",
+    "initialcap": "First letter capitalized",
     "label": "Page name transformation",
     "original": "No change",
-    "titlecase": "Title cased, punctuation to spaces"
+    "titlecase": "Title cased"
   },
   "ViewPage": {
     "feed_icon_alt": "RSS/Atom Feed Icon",
     "home": "Home page",
-    "poweredby": "Powered by opml.xml.style",
+    "poweredby": "Powered by xml.style",
     "title": "Outline"
   }
 }

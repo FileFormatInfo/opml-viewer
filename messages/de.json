@@ -46,15 +46,15 @@
     "url": "URL"
   },
   "Transform": {
-    "initialcap": "Erster Buchstabe groß, Interpunktion zu Leerzeichen",
+    "initialcap": "Erster Buchstabe groß",
     "label": "Seitennamen-Transformation",
     "original": "Keine Änderung",
-    "titlecase": "Titel-Schreibweise, Interpunktion zu Leerzeichen"
+    "titlecase": "Titel-Schreibweise"
   },
   "ViewPage": {
     "feed_icon_alt": "RSS/Atom-Feed-Symbol",
     "home": "Startseite",
-    "poweredby": "Angetrieben durch opml.xml.style",
+    "poweredby": "Angetrieben durch xml.style",
     "title": "Gliederung"
   }
 }

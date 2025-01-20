@@ -12,7 +12,7 @@ import { PoweredBy } from '@/components/PoweredBy';
 import { trackUsage } from '@/lib/usage';
 import { DEFAULT_SORT } from '@/components/SortSelect';
 import { loadOutline } from '@/lib/loadOutline';
-//import { DEFAULT_TRANSFORM } from '@/components/TransformSelect';
+import { DEFAULT_TRANSFORM, getTransform } from '@/components/TransformSelect';
 
 export default async function View({
     searchParams,
@@ -44,18 +44,26 @@ export default async function View({
 
     trackUsage(url_str);
 
-    const sme:OpmlData = await loadOutline(url_str);
-    const items:TreeItem[] = sme.root.children;
+    const sme: OpmlData = await loadOutline(url_str);
+    const items: TreeItem[] = sme.root.children;
 
     if (useRssStyle) {
         transform(items, addRssStyle);
     }
 
     if (sort === 'name') {
-        sortTreeName(items);
+        sortTree(items, (a, b) => a.label.localeCompare(b.label));
     } else if (sort === 'dirfirst') {
-        sortTreeDirFirst(items);
+        sortTree(items, compareDirFirst);
+    } else if (sort === 'url') {
+        sortTree(items, compareUrl);
     }
+
+    const transformer = getTransform(getFirst(urlParams['transform'], DEFAULT_TRANSFORM));
+    if (transformer) {
+        transform(items, transformer);
+    }
+
 
     const title = sme.title || customTitle;
     if (!sme.success) {
@@ -64,61 +72,58 @@ export default async function View({
 
     return (
         <>
-        <Container maxWidth={false} disableGutters={true} sx={{ minHeight: '100vh' }}>
+            <Container maxWidth={false} disableGutters={true} sx={{ minHeight: '100vh' }}>
                 <NavBar debug={showDebug} exit={showExit} language={showLanguage} messages={sme.messages} mode={showMode} title={title} returnUrl={returnUrl} />
-            <Container
-                maxWidth="md"
-                disableGutters={true}
-                    sx={{ alignItems: "center", display: "flex", flexDirection: "column", justifyContent: "top",minHeight: '100vh' }}
+                <Container
+                    maxWidth="md"
+                    disableGutters={true}
+                    sx={{ alignItems: "center", display: "flex", flexDirection: "column", justifyContent: "top", minHeight: '100vh' }}
                 >
-                <Box
-                    sx={{
-                        display: 'flex',
-                        flexDirection: 'column',
-                        width: '100%',
-                    }}
-                >
-                    {sme.success || items.length ? <OpmlTreeView items={items} /> : <h1>Failed to load outline</h1>}
-                </Box>
-                <PoweredBy />
+                    <Box
+                        sx={{
+                            display: 'flex',
+                            flexDirection: 'column',
+                            width: '100%',
+                        }}
+                    >
+                        {sme.success || items.length ? <OpmlTreeView items={items} /> : <h1>Failed to load outline</h1>}
+                    </Box>
+                    <PoweredBy />
+                </Container>
             </Container>
-        </Container>
         </>
 
     );
 }
 
-function sortTreeName(items: TreeItem[]) {
+
+
+function sortTree(items: TreeItem[], sortfn: (a: TreeItem, b: TreeItem) => number) {
     if (items.length == 0) {
         return;
     }
     if (items.length > 1) {
-        items.sort((a, b) => a.label.localeCompare(b.label));
+        items.sort(sortfn);
     }
 
     for (const item of items) {
-        sortTreeName(item.children);
+        sortTree(item.children, sortfn);
     }
 }
 
-function sortTreeDirFirst(items: TreeItem[]) {
-    if (items.length == 0) {
-        return;
+function compareDirFirst(a: TreeItem, b: TreeItem) {
+    if (a.children.length > 0 && b.children.length == 0) {
+        return -1;
+    } else if (a.children.length == 0 && b.children.length > 0) {
+        return 1;
     }
-    if (items.length > 1) {
-        items.sort((a, b) => {
-            if (a.children.length > 0 && b.children.length == 0) {
-                return -1;
-            } else if (a.children.length == 0 && b.children.length > 0) {
-                return 1;
-            }
-            return a.label.localeCompare(b.label)
-        });
-    }
+    return a.label.localeCompare(b.label)
+}
 
-    for (const item of items) {
-        sortTreeDirFirst(item.children);
-    }
+function compareUrl(a: TreeItem, b: TreeItem) {
+    const aUrl = a.htmlUrl || a.xmlUrl || a.label;
+    const bUrl = b.htmlUrl || b.xmlUrl || b.label;
+    return aUrl.localeCompare(bUrl);
 }
 
 function addRssStyle(item: TreeItem) {
@@ -127,7 +132,7 @@ function addRssStyle(item: TreeItem) {
     }
 }
 
-function transform(items: TreeItem[], transformer: (item:TreeItem) => void) {
+function transform(items: TreeItem[], transformer: (item: TreeItem) => void) {
     for (const item of items) {
         transformer(item);
         if (item.children.length > 0) {

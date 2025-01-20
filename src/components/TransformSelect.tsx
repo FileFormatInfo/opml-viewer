@@ -4,35 +4,33 @@ import FormControl from '@mui/material/FormControl';
 import Select from '@mui/material/Select';
 import { useTranslations } from 'next-intl';
 import { UseFormRegisterReturn } from 'react-hook-form';
+import { TreeItem } from '@/lib/types';
 
 
 type Transform = (typeof transforms)[number]
 
 const transforms = ['original', 'initialcap', 'titlecase'] as const;
 
-//LATER: maybe also \p{Symbol}?
-
-function initialCap(s: string): string {
-    s = s.replace(/[^\p{Letter}\p{Number}]+/gu, ' ');
-    return s.length == 0 ? s : s.charAt(0).toUpperCase() + s.slice(1);
+function initialCap(item: TreeItem): void {
+    item.label = item.label.length == 0 ? item.label : item.label.charAt(0).toUpperCase() + item.label.slice(1);
 }
 
 function titleCaseWord(s: string): string {
     return s.length == 0 ? s : s.charAt(0).toUpperCase() + s.slice(1).toLowerCase();
 }
 
-function titleCase(s: string): string {
-    return s.replace(/[^\p{Letter}\p{Number}]+/gu, ' ').split(/\s+/).map(titleCaseWord).join(' ');
+function titleCase(item: TreeItem): void {
+    item.label =  item.label.split(/\s+/).map(titleCaseWord).join(' ');
 }
 
 const DEFAULT_TRANSFORM:Transform = 'initialcap';
 
-const transformMap = new Map<string, (s: string) => string>([
+const transformMap = new Map<string, (item:TreeItem) => void>([
     ['initialcap', initialCap],
     ['titlecase', titleCase],
 ]);
 
-function getTransform(value: string): ((s: string) => string) | null {
+function getTransform(value: string): ((item: TreeItem) => void) | null {
     return transformMap.get(value) || null;
 }
 

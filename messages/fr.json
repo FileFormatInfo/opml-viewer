@@ -46,15 +46,15 @@
     "url": "URL"
   },
   "Transform": {
-    "initialcap": "Première lettre en majuscule, ponctuation en espaces",
+    "initialcap": "Première lettre en majuscule",
     "label": "Transformation du nom de la page",
     "original": "Aucun changement",
-    "titlecase": "Majuscule à chaque mot, ponctuation en espaces"
+    "titlecase": "Majuscule à chaque mot"
   },
   "ViewPage": {
     "feed_icon_alt": "Icône de flux RSS/Atom",
     "home": "Page d'accueil",
-    "poweredby": "Propulsé par opml.xml.style",
+    "poweredby": "Propulsé par xml.style",
     "title": "Plan du site"
   }
 }
