@@ -9,7 +9,7 @@ import { useTreeItem2 } from '@mui/x-tree-view/useTreeItem2';
 import NextLink from 'next/link';
 import { useTranslations } from 'next-intl';
 
-type SitemapTreeViewProps = {
+type OpmlTreeViewProps = {
     items: TreeViewBaseItem[]
 }
 
@@ -76,11 +76,15 @@ const CustomTreeItem = React.forwardRef(function CustomTreeItem(
     );
 });
 
-export default function BasicRichTreeView({ items }: SitemapTreeViewProps) {
+function OpmlTreeView({ items }: OpmlTreeViewProps) {
     return (
         <RichTreeView
             expansionTrigger="iconContainer"
             slots={{ item: CustomTreeItem }}
             items={items} onItemClick={onClick} />
     );
+}
+
+export {
+    OpmlTreeView,
 }

@@ -3,7 +3,7 @@ import { getTranslations } from 'next-intl/server';
 import Container from '@mui/material/Container';
 import Box from '@mui/material/Box';
 
-import SitemapTreeView from '@/components/SitemapTreeView';
+import { OpmlTreeView } from '@/components/OpmlTreeView';
 import NavBar from '@/components/NavBar';
 import { constants } from '@/lib/constants';
 import { getFirst } from '@/lib/getFirst';
@@ -78,7 +78,7 @@ export default async function View({
                         width: '100%',
                     }}
                 >
-                    {sme.success || items.length ? <SitemapTreeView items={items} /> : <h1>Failed to load outline</h1>}
+                    {sme.success || items.length ? <OpmlTreeView items={items} /> : <h1>Failed to load outline</h1>}
                 </Box>
                 <PoweredBy />
             </Container>

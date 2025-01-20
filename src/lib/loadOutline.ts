@@ -34,6 +34,7 @@ async function loadOutline(url_str: string):Promise<OpmlData> {
         retVal.messages.push(errorMessage(err));
         return retVal;
     }
+    retVal.messages.push(`Fetching outline: ${url_str}`);
 
     const start = Date.now();
 
@@ -95,7 +96,8 @@ async function loadOutline(url_str: string):Promise<OpmlData> {
         return retVal;
     }
 
-    console.log(JSON.stringify(xml_data, null, 2));
+    retVal.messages.push(`Entries: ${retVal.count}`);
+    retVal.messages.push(`Parsing complete in ${Date.now() - start}ms.`);
 
     retVal.title = xml_data.opml?.head?.title;
 
