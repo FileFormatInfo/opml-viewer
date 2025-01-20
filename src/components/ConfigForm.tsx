@@ -15,6 +15,7 @@ import { constants } from '@/lib/constants';
 import { DEFAULT_SORT, SortSelect } from '@/components/SortSelect';
 import { DEFAULT_TRANSFORM, TransformSelect } from '@/components/TransformSelect';
 import { ConfigInputs } from '@/lib/ConfigInputs';
+import { DEFAULT_LINKTRANSFORM, LinkSelect } from './LinkSelect';
 
 export default function ConfigForm() {
     const t = useTranslations('HomePage');
@@ -29,6 +30,7 @@ export default function ConfigForm() {
             showdebug: false,
             showlanguage: true,
             showexit: true,
+            xml: DEFAULT_LINKTRANSFORM,
         }
     });
 
@@ -62,6 +64,7 @@ export default function ConfigForm() {
             />
             <SortSelect register={register("sort")} />
             <TransformSelect register={register("transform")} />
+            <LinkSelect register={register("xml")} />
             <FormGroup sx={{ mt: 2 }}>
                 <FormControlLabel control={<Checkbox value="1" defaultChecked {...register("showmode")} />} label={t("show_mode_label")} />
             </FormGroup>

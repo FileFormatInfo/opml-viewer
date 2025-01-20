@@ -37,7 +37,6 @@ This is a graphical viewer for `opml.xml` outlines.  Try it at [opml.xml.style](
 
 ## To Do
 
-- [ ] option to link xmlUrl to analyzer and/or validator
 - [ ] cleanup demo.xml
 - [ ] structured logging
 - [ ] handle html labels (optionally)

@@ -3,6 +3,7 @@ export type ConfigInputs = {
     exit: string;
     sort: string;
     transform: string;
+    xml: string;
     showmode: boolean;
     showdebug: boolean;
     showlanguage: boolean;

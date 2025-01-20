@@ -20,6 +20,13 @@
     "url_required": "URL est requise",
     "view_button": "Voir"
   },
+  "LinkTransform": {
+    "analyzer": "Analyser - vers l'analyseur chez RSS.Style",
+    "label": "Lien XML",
+    "raw": "Original - vers le XML brut",
+    "validator": "Valider - vers le validateur chez W3C",
+    "viewer": "Visionneuse - vers la visionneuse chez RSS.Style"
+  },
   "LocaleSwitcher": {
     "de": "Allemand (Deutsch)",
     "en": "Anglais (English)",

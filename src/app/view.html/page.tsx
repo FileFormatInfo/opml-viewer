@@ -13,6 +13,7 @@ import { trackUsage } from '@/lib/usage';
 import { DEFAULT_SORT } from '@/components/SortSelect';
 import { loadOutline } from '@/lib/loadOutline';
 import { DEFAULT_TRANSFORM, getTransform } from '@/components/TransformSelect';
+import { DEFAULT_LINKTRANSFORM, getLinkTransform } from '@/components/LinkSelect';
 
 export default async function View({
     searchParams,
@@ -32,8 +33,6 @@ export default async function View({
         url_str = constants.DEMO_URL;
     }
     const sort = getFirst(urlParams['sort'], DEFAULT_SORT);
-    //LATER: const transform = getFirst(urlParams['transform'], DEFAULT_TRANSFORM);
-    const useRssStyle = getFirst(urlParams['rssstyle'], '1') === '1';
 
     let returnUrl = getFirst(urlParams['return'], '');
     if (returnUrl == '') {
@@ -46,10 +45,6 @@ export default async function View({
 
     const sme: OpmlData = await loadOutline(url_str);
     const items: TreeItem[] = sme.root.children;
-
-    if (useRssStyle) {
-        transform(items, addRssStyle);
-    }
 
     if (sort === 'name') {
         sortTree(items, (a, b) => a.label.localeCompare(b.label));
@@ -64,6 +59,10 @@ export default async function View({
         transform(items, transformer);
     }
 
+    const linkTransformer = getLinkTransform(getFirst(urlParams['xml'], DEFAULT_LINKTRANSFORM));
+    if (linkTransformer) {
+        transform(items, linkTransformer);
+    }
 
     const title = sme.title || customTitle;
     if (!sme.success) {
@@ -124,12 +123,6 @@ function compareUrl(a: TreeItem, b: TreeItem) {
     const aUrl = a.htmlUrl || a.xmlUrl || a.label;
     const bUrl = b.htmlUrl || b.xmlUrl || b.label;
     return aUrl.localeCompare(bUrl);
-}
-
-function addRssStyle(item: TreeItem) {
-    if (item.xmlUrl) {
-        item.xmlUrl = `https://www.rss.style/example.xml?feedurl=${encodeURIComponent(item.xmlUrl)}`;
-    }
 }
 
 function transform(items: TreeItem[], transformer: (item: TreeItem) => void) {
