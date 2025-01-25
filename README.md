@@ -1,10 +1,10 @@
-# OPML Outline Viewer [<img alt="Outline Viewer logo" src="public/favicon.svg" height="90" align="right" />](https://opml.xml.style/)
+# OPML Outline Viewer [<img alt="Outline Viewer logo" src="public/favicon.svg" height="90" align="right" />](https://opml-viewer.fileformat.info/)
 
 [![NodePing status](https://img.shields.io/nodeping/status/O0XVZ8N8-AB6K-4DZG-80XJ-5P7F7HP3DCMG?label=Current%20status)](https://nodeping.com/reports/checks/O0XVZ8N8-AB6K-4DZG-80XJ-5P7F7HP3DCMG)
 [![NodePing uptime](https://img.shields.io/nodeping/uptime/O0XVZ8N8-AB6K-4DZG-80XJ-5P7F7HP3DCMG?label=30-day%20uptime)](https://nodeping.com/reports/uptime/O0XVZ8N8-AB6K-4DZG-80XJ-5P7F7HP3DCMG)
-[![deploy](https://github.com/fileformat/opml.xml.style/actions/workflows/gcr-deploy.yaml/badge.svg)](https://github.com/fileformat/opml.xml.style/actions/workflows/gcr-deploy.yaml)
+[![deploy](https://github.com/FileFormatInfo/opml-viewer/actions/workflows/gcr-deploy.yaml/badge.svg)](https://github.com/FileFormatInfo/opml-viewer/actions/workflows/gcr-deploy.yaml)
 
-This is a graphical viewer for `opml.xml` outlines.  Try it at [opml.xml.style](https://opml.xml.style/)!
+This is a graphical viewer for `opml.xml` outlines.  Try it at [opml-viewer.fileformat.info](https://opml-viewer.fileformat.info/)!
 
 ## Running locally
 

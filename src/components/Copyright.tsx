@@ -19,7 +19,7 @@ export default function Copyright() {
                 {t('contact_link')}
             </NextLink>
             {' | '}
-            <NextLink color="inherit" href="https://github.com/fileformat/opml.xml.style">
+            <NextLink color="inherit" href="https://github.com/FileFormatInfo/opml-viewer">
                 {t('source_link')}
             </NextLink>
         </Typography>

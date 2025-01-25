@@ -1,12 +1,11 @@
 <?xml version="1.0" encoding="utf8"?>
 <opml version="1.1">
     <head>
-        <title>Demo for opml.xml.style</title>
+        <title>Demo for the OPML Viewer</title>
         <dateCreated>2025-01-19 18:50:24.004243</dateCreated>
         <dateModified>2025-01-19 18:50:24.004243</dateModified>
     </head>
     <body>
-        <outline text="Privatdozent" title="Privatdozent" type="rss" version="RSS" htmlUrl="https://www.privatdozent.co" xmlUrl="https://www.privatdozent.co/feed" />
         <outline text="Bloggers">
             <outline text="Simon Willison" title="Simon Willison" type="rss" version="RSS" htmlUrl="https://fedi.simonwillison.net/@simon" xmlUrl="https://fedi.simonwillison.net/@simon.rss" />
             <outline text="Jacques Mattheij" title="Jacques Mattheij" type="rss" version="RSS" htmlUrl="https://jacquesmattheij.com/" xmlUrl="https://jacquesmattheij.com/rss.xml" />
@@ -61,10 +60,12 @@
         <outline text="Vendors">
             <outline text="Facebook Developers" title="Facebook Developers" type="rss" version="RSS" htmlUrl="https://developers.facebook.com/blog/" xmlUrl="https://developers.facebook.com/blog/feed" />
             <outline text="ClickHouse Blog" title="ClickHouse Blog" type="rss" version="RSS" htmlUrl="https://clickhouse.com/blog" xmlUrl="https://clickhouse.com/rss.xml" />
-            <outline text="Google Developers Blog" title="Google Developers Blog" type="rss" version="RSS" htmlUrl="https://developers.googleblog.com/rss/" xmlUrl="http://feeds.feedburner.com/GDBcode" />
-            <outline text="Google Maps Platform" title="Google Maps Platform" type="rss" version="RSS" htmlUrl="http://mapsplatform.googleblog.com/" xmlUrl="http://feeds.feedburner.com/GoogleGeoDevelopersBlog" />
-            <outline text="Google Open Source Blog" title="Google Open Source Blog" type="rss" version="RSS" htmlUrl="http://opensource.googleblog.com/" xmlUrl="http://feeds.feedburner.com/GoogleOpenSourceBlog" />
-            <outline text="Google Search Central Blog" title="Google Search Central Blog" type="rss" version="RSS" htmlUrl="https://developers.google.com/search/blog/" xmlUrl="https://feeds.feedburner.com/blogspot/amDG" />
+            <outline text="Google">
+                <outline text="Google Developers Blog" title="Google Developers Blog" type="rss" version="RSS" htmlUrl="https://developers.googleblog.com/rss/" xmlUrl="http://feeds.feedburner.com/GDBcode" />
+                <outline text="Google Maps Platform" title="Google Maps Platform" type="rss" version="RSS" htmlUrl="http://mapsplatform.googleblog.com/" xmlUrl="http://feeds.feedburner.com/GoogleGeoDevelopersBlog" />
+                <outline text="Google Open Source Blog" title="Google Open Source Blog" type="rss" version="RSS" htmlUrl="http://opensource.googleblog.com/" xmlUrl="http://feeds.feedburner.com/GoogleOpenSourceBlog" />
+                <outline text="Google Search Central Blog" title="Google Search Central Blog" type="rss" version="RSS" htmlUrl="https://developers.google.com/search/blog/" xmlUrl="https://feeds.feedburner.com/blogspot/amDG" />
+            </outline>
         </outline>
     </body>
 </opml>

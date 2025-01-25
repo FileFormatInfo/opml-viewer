@@ -44,8 +44,8 @@ async function loadOutline(url_str: string):Promise<OpmlData> {
     try {
         xml_resp = await fetch(url, {
             headers: {
-                "User-Agent": `opml.xml.style/1.0 (your outline is being viewed on https://opml.xml.style/ )`,
-                Referer: `https://opml.xml.style/`,
+                "User-Agent": `opml-viewer/1.0 (your outline is being viewed on https://opml-viewer.fileformat.info/ )`,
+                Referer: `https://opml-viewer.fileformat.info/`,
             },
         });
         if (!xml_resp.ok) {

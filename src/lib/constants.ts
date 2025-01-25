@@ -3,7 +3,7 @@ const isDevMode = process.env.NODE_ENV === 'development';
 
 const DEMO_URL = isDevMode
     ? "http://localhost:4000/demo.xml"
-    : "https://opml.xml.style/demo.xml";
+    : "https://opml-viewer.fileformat.info/demo.xml";
 
 export const constants = {
     DEFAULT_HOME: "Home Page",

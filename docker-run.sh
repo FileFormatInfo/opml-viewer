@@ -8,7 +8,7 @@ docker build \
 	--build-arg COMMIT=$(git rev-parse --short HEAD) \
 	--build-arg LASTMOD=$(date -u +%Y-%m-%dT%H:%M:%SZ) \
 	--progress=plain \
-	--tag opml-xml-style \
+	--tag opml-viewer \
 	.
 
 #	--no-cache \
@@ -21,4 +21,4 @@ docker run \
 	--publish 4000:4000 \
 	--rm \
 	--tty \
-    opml-xml-style
+    opml-viewer
