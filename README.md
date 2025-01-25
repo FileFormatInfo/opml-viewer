@@ -6,6 +6,9 @@
 
 This is a graphical viewer for `opml.xml` outlines.  Try it at [opml-viewer.fileformat.info](https://opml-viewer.fileformat.info/)!
 
+See how to integrate it into your `opml.xml` files so it displays automatically at
+[XML.Style](https://www.xml.style/opml/)!
+
 ## Running locally
 
 ```
