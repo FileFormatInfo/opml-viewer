@@ -69,27 +69,25 @@ export default async function View({
     }
 
     return (
-        <>
-            <Container maxWidth={false} disableGutters={true} sx={{ minHeight: '100vh' }}>
-                <NavBar debug={showDebug} exit={showExit} language={showLanguage} messages={sme.messages} mode={showMode} title={title} returnUrl={returnUrl} />
-                <Container
-                    maxWidth="md"
-                    disableGutters={true}
-                    sx={{ alignItems: "center", display: "flex", flexDirection: "column", justifyContent: "top", minHeight: '100vh' }}
+        <Container maxWidth={false} disableGutters={true} sx={{ minHeight: '100vh' }}>
+            <NavBar debug={showDebug} exit={showExit} language={showLanguage} messages={sme.messages} mode={showMode} title={title} returnUrl={returnUrl} />
+            <Container
+                maxWidth="md"
+                disableGutters={true}
+                sx={{ alignItems: "center", display: "flex", flexDirection: "column", justifyContent: "top", minHeight: '100vh' }}
+            >
+                <Box
+                    sx={{
+                        display: 'flex',
+                        flexDirection: 'column',
+                        width: '100%',
+                    }}
                 >
-                    <Box
-                        sx={{
-                            display: 'flex',
-                            flexDirection: 'column',
-                            width: '100%',
-                        }}
-                    >
-                        {sme.success || items.length ? <OpmlTreeView items={items} /> : <h1>Failed to load outline</h1>}
-                    </Box>
-                    <PoweredBy />
-                </Container>
+                    {sme.success || items.length ? <OpmlTreeView items={items} /> : <h1>Failed to load outline</h1>}
+                </Box>
+                <PoweredBy />
             </Container>
-        </>
+        </Container>
 
     );
 }
