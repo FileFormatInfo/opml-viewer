@@ -88,7 +88,6 @@ export default async function View({
                 <PoweredBy />
             </Container>
         </Container>
-
     );
 }
 

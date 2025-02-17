@@ -26,17 +26,16 @@ See how to integrate it into your `opml.xml` files so it displays automatically 
 [![ESLint](https://www.vectorlogo.zone/logos/eslint/eslint-ar21.svg)](https://eslint.org/ "Linting")
 [![Git](https://www.vectorlogo.zone/logos/git-scm/git-scm-ar21.svg)](https://git-scm.com/ "Version control")
 [![Github](https://www.vectorlogo.zone/logos/github/github-ar21.svg)](https://github.com/ "Code hosting")
+[![MUI](https://www.vectorlogo.zone/logos/mui/mui-ar21.svg)](https://mui.com/material-ui/ "React components")
+[![next-intl](https://www.vectorlogo.zone/logos/next-intldev/next-intldev-ar21.svg)](https://next-intl.dev/ "i18n")
 [![Next.js](https://www.vectorlogo.zone/logos/nextjs/nextjs-ar21.svg)](https://nextjs.com/ "React Framework")
 [![Node.js](https://www.vectorlogo.zone/logos/nodejs/nodejs-ar21.svg)](https://nodejs.org/ "Application Server")
 [![NodePing](https://www.vectorlogo.zone/logos/nodeping/nodeping-ar21.svg)](https://nodeping.com?rid=201109281250J5K3P "Uptime monitoring")
 [![npm](https://www.vectorlogo.zone/logos/npmjs/npmjs-ar21.svg)](https://www.npmjs.com/ "JS Package Management")
 [![react.js](https://www.vectorlogo.zone/logos/reactjs/reactjs-ar21.svg)](https://reactjs.org/ "UI Framework")
+[![Twitter](https://www.vectorlogo.zone/logos/twitter/twitter-ar21.svg)](https://github.com/twitter/twemoji "favicon")
 [![TypeScript](https://www.vectorlogo.zone/logos/typescriptlang/typescriptlang-ar21.svg)](https://www.typescriptlang.org/ "Programming Language")
 [![VectorLogoZone](https://www.vectorlogo.zone/logos/vectorlogozone/vectorlogozone-ar21.svg)](https://www.vectorlogo.zone/ "Logos")
-
-* [MUI](https://mui.com/material-ui/) - React components
-* [Twemoji](https://github.com/twitter/twemoji) - favicon
-* [next-intl](https://next-intl.dev/)
 
 ## To Do
 
@@ -44,6 +43,8 @@ See how to integrate it into your `opml.xml` files so it displays automatically 
 - [ ] structured logging
 - [ ] handle html labels (optionally)
 - [ ] open nodes based on `expansionState`
+- [ ] parameter to open all nodes
+- [ ] more demo options (from real sites)
 - [ ] initial scroll based on `vertScrollState`
 - [ ] "report an issue" in footer of debug dialog (link to GH issues)
 - [ ] test/cleanup error pages
