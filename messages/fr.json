@@ -5,7 +5,7 @@
   },
   "HomePage": {
     "cancel_button": "Annuler",
-    "demo_button": "Démo",
+    "demo_button": "Démos",
     "return_help": "Par défaut à la racine de l'URL opml.xml",
     "return_label": "URL de retour (optionnel)",
     "show_exit_label": "Afficher l'outil de sortie",

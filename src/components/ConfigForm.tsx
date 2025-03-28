@@ -84,7 +84,7 @@ export default function ConfigForm() {
                     {t("cancel_button")}
                 </Button>
                 <Stack direction="row" flex="1" justifyContent="flex-end" spacing={2} sx={{ backgroundColor: 'transparent' }}>
-                    <Button component={NextLink} variant="contained" href={`/view.html?url=${encodeURIComponent(constants.DEMO_URL)}&showmode=1&showlanguage=1&showexit=1&sort=name&return=/&showexit=1`}>
+                    <Button component={NextLink} variant="outlined" href={`https://www.xml.style/opml/#demos`}>
                         {t("demo_button")}
                     </Button>
                 </Stack>

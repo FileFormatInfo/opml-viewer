@@ -63,33 +63,52 @@ async function loadOutline(url_str: string):Promise<OpmlData> {
 
     retVal.messages.push("Fetched url in " + (Date.now() - start) + "ms.");
     retVal.messages.push(
-        `Content length: ${xml_resp.headers.get("Content-Length")}`
+        `Content length (from header): ${xml_resp.headers.get("Content-Length")}`
     );
-    const contentType = xml_resp.headers.get("Content-Type");
+    let contentType = xml_resp.headers.get("Content-Type");
     retVal.messages.push(`Content type: ${contentType || "(null)"}`);
     if (!contentType) {
-        retVal.errorCount++;
         retVal.messages.push("No content type provided.");
-        return retVal;
+        contentType = "";
     }
+
+    let isXml:boolean;
     if (
-        !contentType.startsWith("text/xml") &&
-        !contentType.startsWith("application/xml") &&
-        !contentType.startsWith("text/plain")
+        contentType.startsWith("text/xml") ||
+        contentType.startsWith("application/xml") ||
+        contentType.startsWith("text/x-opml")
         ) {
+            isXml = true;
+    } else if (
+        contentType.startsWith("text/plain") ||
+        contentType.startsWith("application/octet-stream") ||
+        contentType == ""
+    ) {
+        isXml = false;
+        retVal.messages.push("Content type is not XML.");
+    } else {
         retVal.errorCount++;
         retVal.messages.push("Invalid content type: " + contentType);
         return retVal;
     }
 
-    const xml_str = await xml_resp.text();
+    let xml_str:string;
+    try {
+        xml_str = await xml_resp.text();
+    } catch (err: unknown) {
+        retVal.errorCount++;
+        retVal.messages.push("Unable to get text: " + errorMessage(err));
+        return retVal;
+    }
 
-    if (contentType.startsWith("text/plain")) {
+    if (isXml == false) {
         if (xml_str.trim().startsWith("<")) {
-            retVal.messages.push("Content type is text/plain but starts with '<'. Parsing as XML.");
+            retVal.messages.push("Content starts with '<'. Attempting to parse as XML.");
         } else {
             retVal.errorCount++;
-            retVal.messages.push("Content type is text/plain and does not start with '<'. Not parsing.");
+            retVal.messages.push(
+                "Content does not start with '<'. Not parsing."
+            );
             return retVal;
         }
     }
@@ -111,8 +130,7 @@ async function loadOutline(url_str: string):Promise<OpmlData> {
         return retVal;
     }
 
-    retVal.messages.push(`Entries: ${retVal.count}`);
-    retVal.messages.push(`Parsing complete in ${Date.now() - start}ms.`);
+    retVal.messages.push(`XML parsing complete in ${Date.now() - start}ms.`);
 
     let xmlTitle = xml_data.opml?.head?.title;
     if (xmlTitle && xmlTitle.indexOf("&") >= 0) {
@@ -120,7 +138,13 @@ async function loadOutline(url_str: string):Promise<OpmlData> {
     }
     retVal.title = xmlTitle || "";
 
+    const outlineStart = Date.now();
     processNode(retVal, retVal.root, xml_data.opml.body.outline as OpmlOutline[]);
+
+    retVal.messages.push(`Entries: ${retVal.count}`);
+    retVal.messages.push(`Outline parsing complete in ${Date.now() - outlineStart}ms.`);
+
+    retVal.messages.push(`Total time: ${Date.now() - start}ms.`);
 
     retVal.success = retVal.errorCount === 0;
 
