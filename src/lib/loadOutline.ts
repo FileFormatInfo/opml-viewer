@@ -139,7 +139,9 @@ async function loadOutline(url_str: string):Promise<OpmlData> {
     retVal.title = xmlTitle || "";
 
     const outlineStart = Date.now();
-    processNode(retVal, retVal.root, xml_data.opml.body.outline as OpmlOutline[]);
+    const rawRoot = xml_data.opml.body.outline;
+    const treeRoot = Array.isArray(rawRoot) ? rawRoot : [rawRoot];
+    processNode(retVal, retVal.root, treeRoot as OpmlOutline[]);
 
     retVal.messages.push(`Entries: ${retVal.count}`);
     retVal.messages.push(`Outline parsing complete in ${Date.now() - outlineStart}ms.`);
@@ -153,27 +155,29 @@ async function loadOutline(url_str: string):Promise<OpmlData> {
 
 function processNode(retVal: OpmlData, parent: TreeItem, data: OpmlOutline[]) {
 
-    //console.log(data);
+    try {
+        for (const item of data) {
+            retVal.count++;
 
-    for (const item of data) {
-        retVal.count++;
+            const newItem: TreeItem = {
+                id: `ti-${retVal.count}`,
+                label: item.title || item.text || "",
+                htmlUrl: purifyUrl(item.htmlUrl) || purifyUrl(item.url),
+                xmlUrl: purifyUrl(item.xmlUrl),
+                children: [],
+            };
+            parent.children.push(newItem);
 
-        const newItem: TreeItem = {
-            id: `ti-${retVal.count}`,
-            label: item.title || item.text || "",
-            htmlUrl: purifyUrl(item.htmlUrl) || purifyUrl(item.url),
-            xmlUrl: purifyUrl(item.xmlUrl),
-            children: [],
-        };
-        parent.children.push(newItem);
-
-        if (item.outline) {
-            const subtree: OpmlOutline[] = Array.isArray(item.outline) ? item.outline : [item.outline];
-            processNode(retVal, newItem, subtree);
+            if (item.outline) {
+                const subtree: OpmlOutline[] = Array.isArray(item.outline) ? item.outline : [item.outline];
+                processNode(retVal, newItem, subtree);
+            }
         }
+    } catch (err: unknown) {
+        retVal.errorCount++;
+        retVal.messages.push("Error processing outline node: " + errorMessage(err));
     }
 }
-
 
 export {
     loadOutline,
